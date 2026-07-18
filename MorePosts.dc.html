@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Arimo:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; font-family:'Arimo',Arial,sans-serif; background:#fff; color:#111; }
+    a { color:inherit; text-decoration:none; }
+    a:hover { opacity:0.75; }
+    * { box-sizing:border-box; }
+    tr:hover td { background:#fafafa; }
+  </style>
+</helmet>
+
+<nav style="display:flex;justify-content:center;align-items:center;gap:44px;padding:16px 40px;background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,0.07);">
+  <a href="./Portfolio.dc.html#my-work" style="font-family:'Arimo',sans-serif;font-weight:600;font-size:15px;">My Work</a>
+  <a href="./About.dc.html" style="font-family:'Arimo',sans-serif;font-weight:600;font-size:15px;">About Me</a>
+  <a href="./MorePosts.dc.html" style="font-family:'Arimo',sans-serif;font-weight:700;font-size:15px;padding:7px 22px;background:#FFDDB0;border-radius:100px;">More Posts</a>
+</nav>
+
+<section style="max-width:1200px;margin:0 auto;padding:80px 48px 100px;">
+  <div style="font-family:'Bungee',cursive;font-size:11px;letter-spacing:3px;display:inline-block;border-bottom:2px solid #111;padding-bottom:3px;margin-bottom:18px;">MORE POSTS</div>
+  <h2 style="font-family:'Arimo',sans-serif;font-weight:700;font-size:36px;line-height:1.2;margin:0 0 12px;">An archive of top-performing content</h2>
+
+
+  <div style="display:flex;gap:10px;margin-bottom:36px;">
+    {{ filterButtonEls }}
+  </div>
+
+  <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+    <thead>
+      <tr style="border-bottom:2px solid #111;">
+        <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">PREVIEW</th>
+        <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">PLATFORM</th>
+        <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">TYPE</th>
+        <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">VIEWS</th>
+        <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">ENGAGEMENTS</th>
+        <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">LINK</th>
+      </tr>
+    </thead>
+    <tbody>
+      <sc-for list="{{ filteredPosts }}" as="post" hint-placeholder-count="10">
+        <tr style="border-bottom:1px solid #f0f0f0;">
+          <td style="padding:12px 0;text-align:center;vertical-align:middle;"><div style="display:flex;justify-content:center;">{{ post.thumbEl }}</div></td>
+          <td style="padding:12px 0;text-align:center;vertical-align:middle;">{{ post.platformEl }}</td>
+          <td style="padding:12px 0;font-family:'Arimo',sans-serif;font-size:13px;color:#888;text-align:center;vertical-align:middle;">{{ post.type }}</td>
+          <td style="padding:12px 0;font-family:'Bungee',cursive;font-size:15px;text-align:center;vertical-align:middle;">{{ post.viewsFmt }}</td>
+          <td style="padding:12px 0;font-family:'Arimo',sans-serif;font-size:14px;color:#666;text-align:center;vertical-align:middle;">{{ post.engFmt }}</td>
+          <td style="padding:12px 0;text-align:center;vertical-align:middle;">
+            <a href="{{ post.link }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#CEDDFE;border-radius:50%;font-size:15px;">↗</a>
+          </td>
+        </tr>
+      </sc-for>
+    </tbody>
+  </table>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    activeFilter: 'all',
+    posts: [
+      { id:  1, platform:'TikTok',    type:'Video',    views:12400000, eng:2125000, link:'https://www.tiktok.com/@curseforge/video/7578484197304651039', thumb:null },
+      { id:  2, platform:'X/Twitter', type:'Static',   views:10083049, eng:652769,  link:'https://x.com/CurseForge/status/1912536465713561833',          thumb:'./uploads/hbm ghast.png' },
+      { id:  3, platform:'Instagram', type:'Video',    views:7909000,  eng:1259000, link:'https://www.instagram.com/reel/DRrfePXCcFF/',                  thumb:null },
+      { id:  4, platform:'TikTok',    type:'Video',    views:4100000,  eng:268000,  link:'https://www.tiktok.com/@curseforge/video/7581459761154067743',  thumb:null },
+      { id:  5, platform:'Instagram', type:'Video',    views:3559000,  eng:165000,  link:'https://www.instagram.com/reel/DMqQsLzR62M/',                  thumb:'./uploads/pasted-1784382572400-0.png' },
+      { id:  6, platform:'Instagram', type:'Video',    views:3452000,  eng:216000,  link:'https://www.instagram.com/reel/DN3r-2hXHhs/',                   thumb:null },
+      { id:  7, platform:'Instagram', type:'Video',    views:3330000,  eng:315000,  link:'https://www.instagram.com/reel/DLdCBEvv5Nc/',                   thumb:null },
+      { id:  8, platform:'X/Twitter', type:'Video',    views:3274353,  eng:204071,  link:'https://x.com/CurseForge/status/1905318907965030845',            thumb:null },
+      { id:  9, platform:'Instagram', type:'Video',    views:2952000,  eng:265000,  link:'https://www.instagram.com/reel/DLiHkOzqF-y/',                   thumb:null },
+      { id: 10, platform:'Instagram', type:'Video',    views:2900000,  eng:588000,  link:'https://www.instagram.com/reel/DF-Ttm6v6Zk/',                   thumb:null },
+      { id: 11, platform:'TikTok',    type:'Video',    views:2900000,  eng:441000,  link:'https://www.tiktok.com/@curseforge/video/7520148287752555806',   thumb:null },
+      { id: 12, platform:'Instagram', type:'Video',    views:2673000,  eng:274000,  link:'https://www.instagram.com/reel/DFNKv6LS0rx/',                   thumb:'./uploads/pasted-1784382408672-0.png' },
+      { id: 13, platform:'Instagram', type:'Static',   views:2552394,  eng:454000,  link:'https://www.instagram.com/p/DEj-n42u1zM/',                      thumb:'./uploads/house house.png' },
+      { id: 14, platform:'TikTok',    type:'Carousel', views:2500000,  eng:376000,  link:'https://www.tiktok.com/@curseforge/video/7551391994715720990',   thumb:null },
+      { id: 15, platform:'Instagram', type:'Video',    views:2229000,  eng:124911,  link:'https://www.instagram.com/reel/DSAI9TjgQMH',                    thumb:null },
+      { id: 16, platform:'X/Twitter', type:'Static',   views:1767819,  eng:218229,  link:'https://x.com/CurseForge/status/1903514594699612358',            thumb:'./uploads/pasted-1784382581611-0.png' },
+      { id: 17, platform:'Instagram', type:'Video',    views:1741000,  eng:263157,  link:'https://www.instagram.com/reel/DMdUPK1R3fP/',                   thumb:null },
+      { id: 18, platform:'TikTok',    type:'Video',    views:1700000,  eng:196300,  link:'https://www.tiktok.com/@curseforge/video/7451184815090568479',   thumb:null },
+      { id: 19, platform:'X/Twitter', type:'Video',    views:1660091,  eng:175440,  link:'https://x.com/CurseForge/status/1937903621124899032',            thumb:null },
+      { id: 20, platform:'TikTok',    type:'Video',    views:1600000,  eng:165000,  link:'https://www.tiktok.com/@curseforge/video/7542853619561843998',   thumb:null },
+      { id: 21, platform:'Instagram', type:'Video',    views:1594541,  eng:216000,  link:'https://www.instagram.com/reel/DReqpc_lBCO/',                   thumb:null },
+      { id: 22, platform:'TikTok',    type:'Video',    views:1500000,  eng:243100,  link:'https://www.tiktok.com/@curseforge/video/7594396966897847583',   thumb:null },
+      { id: 23, platform:'Instagram', type:'Video',    views:1400000,  eng:218000,  link:'https://www.instagram.com/reel/DFFeHNPOzaN/',                   thumb:null },
+      { id: 24, platform:'X/Twitter', type:'Video',    views:1271322,  eng:123182,  link:'https://x.com/CurseForge/status/1889700936278229048',            thumb:null },
+      { id: 25, platform:'X/Twitter', type:'Static',   views:1213145,  eng:111537,  link:'https://x.com/CurseForge/status/1909637369302851658',            thumb:'./uploads/pasted-1784382120033-0.png' },
+      { id: 26, platform:'X/Twitter', type:'Video',    views:1069164,  eng:120091,  link:'https://x.com/CurseForge/status/1919784223533093232',            thumb:null },
+      { id: 27, platform:'TikTok',    type:'Carousel', views:1000000,  eng:103000,  link:'https://www.tiktok.com/@curseforge/video/7559185216439340319',   thumb:null },
+      { id: 28, platform:'Instagram', type:'Video',    views:1000000,  eng:148600,  link:'https://www.instagram.com/reel/DJroMWUI2I3/',                   thumb:'./uploads/pasted-1784382539231-0.png' },
+      { id: 29, platform:'X/Twitter', type:'Video',    views:932557,   eng:157956,  link:'https://x.com/CurseForge/status/1939353168476807260',            thumb:null },
+      { id: 30, platform:'X/Twitter', type:'Static',   views:866972,   eng:83833,   link:'https://x.com/CurseForge/status/1903508359845736881',            thumb:'./uploads/pasted-1784382159165-0.png' },
+      { id: 31, platform:'TikTok',    type:'Video',    views:690800,   eng:51141,   link:'https://www.tiktok.com/@curseforge/video/7605957788208090398',   thumb:null },
+      { id: 32, platform:'Instagram', type:'Video',    views:620000,   eng:76000,   link:'https://www.instagram.com/reel/DaS9ASHjmib/',                   thumb:null },
+      { id: 33, platform:'X/Twitter', type:'Static',   views:560467,   eng:71554,   link:'https://x.com/CurseForge/status/1908905034001088701',            thumb:null },
+      { id: 34, platform:'TikTok',    type:'Video',    views:442000,   eng:42000,   link:'https://www.tiktok.com/@curseforge/video/7657927391062379806',   thumb:null },
+      { id: 35, platform:'TikTok',    type:'Video',    views:395000,   eng:48442,   link:'https://www.tiktok.com/@curseforge/video/7661994298925239582',   thumb:null }
+    ]
+  };
+
+  renderVals() {
+    const { activeFilter, posts } = this.state;
+
+    const fmt = n => n >= 1e6 ? (n/1e6).toFixed(1).replace(/\.0$/,'') + 'M' : n >= 1e3 ? Math.round(n/1e3) + 'K' : String(n);
+    const ce = React.createElement;
+    const icons = {
+      'Instagram': ce('svg', { width:22, height:22, viewBox:'0 0 24 24', fill:'none', stroke:'#111', strokeWidth:2, strokeLinecap:'round' },
+        ce('rect', { x:2, y:2, width:20, height:20, rx:5 }), ce('circle', { cx:12, cy:12, r:4.5 }), ce('circle', { cx:17.5, cy:6.5, r:1, fill:'#111', stroke:'none' })),
+      'TikTok': ce('svg', { width:22, height:22, viewBox:'0 0 24 24', fill:'#111' },
+        ce('path', { d:'M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77 0 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.84a8.17 8.17 0 0 0 4.77 1.52V6.88a4.85 4.85 0 0 1-1-.19z' })),
+      'X/Twitter': ce('svg', { width:22, height:22, viewBox:'0 0 24 24', fill:'#111' },
+        ce('path', { d:'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.735l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' }))
+    };
+
+    const platformKey = { 'Instagram':'instagram', 'TikTok':'tiktok', 'X/Twitter':'twitter' };
+    const filters = [
+      { key:'all', label:'All' }, { key:'instagram', label:'Instagram' },
+      { key:'tiktok', label:'TikTok' }, { key:'twitter', label:'X/Twitter' }
+    ];
+    const filterButtonEls = filters.map(f =>
+      React.createElement('button', {
+        key: f.key,
+        onClick: () => this.setState({ activeFilter: f.key }),
+        style: { background: activeFilter === f.key ? '#FFDDB0' : '#f0f0f0', border:'none', borderRadius:'100px', padding:'8px 22px', fontFamily:"'Arimo',sans-serif", fontWeight:700, fontSize:'14px', cursor:'pointer' }
+      }, f.label)
+    );
+
+    const filteredPosts = posts
+      .filter(p => activeFilter === 'all' || platformKey[p.platform] === activeFilter)
+      .map(p => ({
+        ...p,
+        viewsFmt: fmt(p.views),
+        engFmt: fmt(p.eng),
+        platformEl: icons[p.platform],
+        thumbEl: p.thumb
+          ? React.createElement('img', { key: p.id, src: p.thumb, alt:'thumbnail', style:{ width:'72px', height:'72px', objectFit:'cover', borderRadius:'10px', display:'block' } })
+          : React.createElement('image-slot', { id:`post-${p.id}`, radius:'10', placeholder:'Drop image', style:{ width:'72px', height:'72px', display:'block' } })
+      }));
+
+    return { filterButtonEls, filteredPosts };
+  }
+}
+</script>
+</body>
+</html>
