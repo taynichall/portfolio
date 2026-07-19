@@ -17,25 +17,36 @@
     a:hover { opacity:0.75; }
     * { box-sizing:border-box; }
     tr:hover td { background:#fafafa; }
+
+    @media (max-width: 640px) {
+      .site-nav { gap:14px !important; padding:14px 16px !important; flex-wrap:wrap !important; }
+      .site-nav a { font-size:13px !important; padding:6px 14px !important; }
+      .posts-section { padding:40px 16px 64px !important; }
+      .posts-section h2 { font-size:24px !important; }
+      .filter-row { flex-wrap:wrap !important; }
+      .table-scroll { overflow-x:auto !important; -webkit-overflow-scrolling:touch; margin:0 -16px !important; padding:0 16px !important; }
+      .posts-table { min-width:640px !important; }
+    }
   </style>
 </helmet>
 
-<nav style="display:flex;justify-content:center;align-items:center;gap:44px;padding:16px 40px;background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,0.07);">
+<nav class="site-nav" style="display:flex;justify-content:center;align-items:center;gap:44px;padding:16px 40px;background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,0.07);">
   <a href="./index.html" style="font-family:'Arimo',sans-serif;font-weight:600;font-size:15px;">My Work</a>
   <a href="./About.dc.html" style="font-family:'Arimo',sans-serif;font-weight:600;font-size:15px;">About Me</a>
   <a href="./MorePosts.dc.html" style="font-family:'Arimo',sans-serif;font-weight:700;font-size:15px;padding:7px 22px;background:#FFDDB0;border-radius:100px;">More Posts</a>
 </nav>
 
-<section style="max-width:1200px;margin:0 auto;padding:80px 48px 100px;">
+<section class="posts-section" style="max-width:1200px;margin:0 auto;padding:80px 48px 100px;">
   <div style="font-family:'Bungee',cursive;font-size:11px;letter-spacing:3px;display:inline-block;border-bottom:2px solid #111;padding-bottom:3px;margin-bottom:18px;">MORE POSTS</div>
   <h2 style="font-family:'Arimo',sans-serif;font-weight:700;font-size:36px;line-height:1.2;margin:0 0 12px;">An archive of top-performing content</h2>
 
 
-  <div style="display:flex;gap:10px;margin-bottom:36px;">
+  <div class="filter-row" style="display:flex;gap:10px;margin-bottom:36px;">
     {{ filterButtonEls }}
   </div>
 
-  <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+  <div class="table-scroll">
+  <table class="posts-table" style="width:100%;border-collapse:collapse;table-layout:fixed;">
     <thead>
       <tr style="border-bottom:2px solid #111;">
         <th style="font-family:'Bungee',cursive;font-size:10px;letter-spacing:2px;text-align:center;padding:0 0 14px;color:#888;font-weight:400;">PREVIEW</th>
@@ -61,6 +72,7 @@
       </sc-for>
     </tbody>
   </table>
+  </div>
 </section>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
